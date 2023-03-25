@@ -1,0 +1,16 @@
+{% load draw_menu %}
+
+{{ context.request.path }}
+<!-- TODO: try to evade hard-coding  -->
+<ul>
+    {% for parent, children in items.items %}
+        {% if not parent.parent %}
+            <li><a href="/menu/{{ parent.name }}">{{parent.title}}</a></li>
+            {% if children %}
+                {% draw_branch items children %}
+            {% endif %}
+        {% endif %}
+    
+        
+    {% endfor %}
+</ul>

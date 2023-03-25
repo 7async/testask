@@ -1,0 +1,15 @@
+{% load draw_menu %}
+
+<!-- TODO: try to evade hard-coding everywhere  -->
+
+<ul>
+    {% for child in children %}
+        {% if child.parent.name in path%}
+        <li><a href="{{ child.get_url }}/">{{ child.title }}</a></li>
+        {% endif %}
+
+        {% if items|get_value:child %}
+            {% draw_branch items items|get_value:child %}
+        {% endif %}
+    {% endfor %}
+</ul>
